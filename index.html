@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script>
+    // (function(d) {
+    //   var config = {
+    //     kitId: 'txy4lhi',
+    //     scriptTimeout: 3000,
+    //     async: true
+    //   },
+    //   h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    // })(document);
+  </script>
+  <title>韵色 demo</title>
+</head>
+<body>
+  <div class="row container">
+    <div style="padding:40px 0 20px 0">
+      <h2 class="header song text-bold" style="display:inline">韵色<sup>demo</sup></h2>
+      <a class="song waves-effect waves-dark btn-large white black-text modal-trigger" href="#input-modal" style="float:right">
+        <i class="material-icons left">brush</i>写下你的诗歌
+      </a>
+    </div>
+    <div id="input-modal" class="modal modal-fixed-footer song">
+      <div class="modal-content">
+        <div class="input-field">
+          <textarea id="text-input" class="materialize-textarea"></textarea>
+          <label for="text-input">写下一段诗歌</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-dark btn-flat">
+          <i class="material-icons left">check</i>好
+        </a>
+      </div>
+    </div>
+    <div id="poem-container"></div>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+M.AutoInit();
+</script>
+<style>
+.song {
+  font-family: source-han-serif-sc, serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.text-medium {
+  font-weight: 500;
+}
+.text-bold {
+  font-weight: 700;
+}
+.text-loose {
+  letter-spacing: 0.1em;
+}
+.text-looser {
+  letter-spacing: 0.25em;
+}
+</style>
+</html>
