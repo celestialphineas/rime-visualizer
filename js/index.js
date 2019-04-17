@@ -35,15 +35,20 @@ if (!Array.prototype.flat) {
    * @param {string} input String to split
    */
   function lineBreak(input) {
-    return input.replace('\n\n', '\n')
-      .split('\n').flat()
+    return input.split('\n')
       // .map(function(str) { return str.split(/(?<=[。！？；：])/g); }).flat()
-      .map(function(str) { return str.split(/^[^。！？；：]*[。！？；：]/g); }).flat()
+      .map(function(str) {
+        return str.split('').reverse().join('')
+          .split(/(?=[。！？；：])/g).map(function(s) { return s.split('').reverse().join(''); })
+          .reverse();
+      }).flat()
       .map(function breakLong(str) {
         // Break up long line
         if(str.length >= 20) {
           // var clusters = str.split(/(?<=[，、　])/g);
-          var clusters = str.split(/^[^，、　]*[，、　]/g);
+          var clusters = str.split('').reverse().join('')
+            .split(/(?=[，、　])/g).map(function(s) { return s.split('').reverse().join(''); })
+            .reverse();
           if(clusters.length === 1) return str;
           var mid = Math.ceil(clusters.length/2);
           return [
@@ -61,7 +66,7 @@ if (!Array.prototype.flat) {
    * @param {string} input String to convert
    */
   function hanzi2HTML(input) {
-    var regex = /([\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\ud840-\ud868][\udc00-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|[\ud86a-\ud86c][\udc00-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud86e[\udc00-\udc1d])/g;
+    var regex = /([\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\u{20000}-\u{2CEAF}])/gu;
 
     return input.replace(regex, function(g1) {
       var classList = ['hanzi-box'];
@@ -87,6 +92,11 @@ if (!Array.prototype.flat) {
     $('#poem-title').text(poemTitle);
   }
   function updatePoemText() {
+    if(isSimplified(poemText)) {
+      $('.song').attr('lang', 'zh-CN');
+    } else {
+      $('.song').attr('lang', 'kr');
+    }
     $('#poem-container').html(
       lineBreak(poemText).map(hanzi2HTML).reduce(function(a, b) { return a + '</br>' + b; })
     );

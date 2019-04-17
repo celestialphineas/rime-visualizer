@@ -17,12 +17,12 @@
     })(document);
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <title>韵色 demo</title>
+  <title>韻色 demo</title>
 </head>
 <body>
   <div class="row container" style="max-width:800px">
     <div style="padding:40px 0 20px 0">
-      <h3 class="header song text-bold" style="display:inline">韵色<sup>demo</sup></h2>
+      <h3 class="header song-trad text-bold" style="display:inline" lang="kr">韻色<sup>demo</sup></h2>
       <a class="waves-effect waves-light btn-floating btn-large black modal-trigger" href="#input-modal" style="float:right">
         <i class="material-icons left">brush</i>
       </a>
@@ -49,6 +49,7 @@
   </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/trad-or-simp.js"></script>
 <script src="js/index.js"></script>
 <script>
 M.AutoInit();
@@ -59,8 +60,8 @@ M.AutoInit();
     visibility: hidden;
   }
 }
-.song {
-  font-family: source-han-serif-sc, serif;
+.song, .song-trad {
+  font-family: source-han-serif-korean, serif;
   font-weight: 500;
   font-style: normal;
 }
@@ -78,19 +79,22 @@ M.AutoInit();
 }
 
 #poem-container {
-  font-size: 26pt;
+  font-size: 20pt;
+  letter-spacing: 6pt;
 }
 #poem-title {
   margin: 20pt 2pt;
+  transform: scale(1, 1.02);
 }
 .hanzi-box {
   font-size: 20pt;
   line-height: 20pt;
+  letter-spacing: 0pt;
   transform: scale(1, 1.1) skew(0deg, -0.6deg);
   width: 24pt;
   height: 22pt;
   padding: 1pt 2pt;
-  margin: 4pt 1pt;
+  margin: 0.3em 1pt;
   display: inline-block;
   background: transparent;
   border-radius: 5px;
