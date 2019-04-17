@@ -24,9 +24,30 @@
     <div style="padding:40px 0 20px 0">
       <h3 class="header song-trad text-bold" style="display:inline" lang="kr">韻色<sup>demo</sup></h2>
       <a class="waves-effect waves-light btn-floating btn-large black modal-trigger" href="#input-modal" style="float:right">
-        <i class="material-icons left">brush</i>
+        <i class="material-icons">brush</i>
       </a>
     </div>
+    <div id="color-controller" class="hidden"></div>
+    <div style="height:0;text-align:center;">
+      <a id="drop-panel-button" class="btn-floating btn-small waves-effect waves-dark white pulse" style="top:-16.2px">
+        <i id="drop-panel-icon" class="material-icons drop-down-icon" style="color:#555">arrow_drop_down</i>
+      </a>
+      <script>
+        if(!$('#color-controller').hasClass('hidden')) $('#drop-panel-icon').addClass('up');
+        // Toggling controller
+        $('#drop-panel-button').on('click', function () {
+          $('#drop-panel-button').removeClass('pulse');
+          if($('#color-controller').hasClass('hidden')) {
+            $('#color-controller').removeClass('hidden');
+            $('#drop-panel-icon').addClass('up');
+          } else {
+            $('#color-controller').addClass('hidden');
+            $('#drop-panel-icon').removeClass('up');
+          }
+        })
+      </script>
+    </div>
+    <div id="head-separator"></div>
     <div id="input-modal" class="modal modal-fixed-footer">
       <div class="modal-content">
         <div class="input-field">
@@ -60,6 +81,7 @@ M.AutoInit();
     visibility: hidden;
   }
 }
+
 .song, .song-trad {
   font-family: source-han-serif-korean, serif;
   font-weight: 500;
@@ -78,16 +100,15 @@ M.AutoInit();
   letter-spacing: 0.25em;
 }
 
-#poem-container {
-  font-size: 20pt;
-  letter-spacing: 6pt;
-}
 #poem-title {
   margin: 20pt 2pt;
   transform: scale(1, 1.02);
 }
-.hanzi-box {
+#poem-container {
   font-size: 20pt;
+  letter-spacing: 6pt;
+}
+.hanzi-box {
   line-height: 20pt;
   letter-spacing: 0pt;
   transform: scale(1, 1.1) skew(0deg, -0.6deg);
@@ -99,6 +120,50 @@ M.AutoInit();
   background: transparent;
   border-radius: 5px;
   transition: all 0.5s;
+}
+@media screen and (max-width: 600px) {
+  #poem-title {
+    font-size: 16pt;
+  }
+  #poem-container {
+    font-size: 12pt;
+    letter-spacing: 2.5pt;
+  }
+  .hanzi-box {
+    line-height: 12pt;
+    letter-spacing: 0pt;
+    width: 14pt;
+    height: 14pt;
+    padding: 1pt 1pt;
+    margin: 0.3em 0.5pt;
+  }
+}
+
+#color-controller {
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+  z-index: -10;
+  transition: all 0.5s;
+  opacity: 1;
+}
+#color-controller.hidden {
+  height: 0;
+  opacity: 0;
+}
+
+#head-separator {
+  height:8px;
+  background: radial-gradient(ellipse at 25% 0%, rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 25%), radial-gradient(ellipse at 70% 0%, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 35%);
+  box-shadow: inset 0 7px 5px -10px #000000CC;
+}
+
+.drop-down-icon{
+  transition: all 0.5s;
+}
+
+.drop-down-icon.up {
+  transform: rotate(180deg)
 }
 </style>
 <style>
