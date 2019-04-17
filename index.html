@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script>
-    (function(d) {
-      var config = {
-        kitId: 'txy4lhi',
-        scriptTimeout: 3000,
-        async: true
-      },
-      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document);
+    // (function(d) {
+    //   var config = {
+    //     kitId: 'txy4lhi',
+    //     scriptTimeout: 3000,
+    //     async: true
+    //   },
+    //   h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    // })(document);
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <title>韻色 demo</title>
@@ -27,8 +27,29 @@
         <span class="song-trad text-bold" lang="kr" style="font-size:20pt">詩</span>
       </a>
     </div>
-    <div id="color-controller" class="hidden">
-      
+    <div id="color-controller" class="">
+      <ul id="controller-tabs" class="tabs">
+        <li class="tab"><a class="active" href="#sheng-page">声</a></li>
+        <li class="tab"><a href="#hu-page">呼</a></li>
+        <li class="tab"><a href="#yun-page">韻</a></li>
+        <li class="tab"><a href="#wei-page">尾</a></li>
+        <li class="tab"><a href="#diao-page">調</a></li>
+      </ul>
+      <div id="sheng-page"><div class="control-page">
+
+      </div></div>
+      <div id="hu-page"><div class="control-page">
+
+      </div></div>
+      <div id="yun-page"><div class="control-page">
+
+      </div></div>
+      <div id="wei-page"><div class="control-page">
+
+      </div></div>
+      <div id="diao-page"><div class="control-page">
+
+      </div></div>
     </div>
     <div style="height:0;text-align:center;">
       <a id="drop-panel-button" class="btn-floating btn-small waves-effect waves-dark white pulse" style="top:-16.2px">
@@ -54,7 +75,7 @@
       <div class="modal-content">
         <div class="input-field">
           <input value=" " id="title-input" type="text" class="validate" style="color:black">
-          <label for="title-input">题名</label>
+          <label for="title-input">題名</label>
         </div>
         <div class="input-field">
           <textarea id="text-input" class="materialize-textarea" style="color:black"></textarea>
@@ -67,17 +88,56 @@
         </a>
       </div>
     </div>
-    <h4 id="poem-title" class="song text-bold text-looser">题名</h4>
+    <h4 id="poem-title" class="song text-bold text-looser">題名</h4>
     <div id="poem-container" class="song text-medium"></div>
   </div>
+  <footer class="page-footer black">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">韻色</h5>
+          <p class="grey-text text-lighten-4">漢語音韻可視化demo，目前僅支持普通話</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">鏈接</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://github.com/celestialphineas/rime-visualizer">GitHub Repo</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2019
+      <a class="grey-text text-lighten-4 right" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>
+      </div>
+    </div>
+  </footer>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/trad-or-simp.js"></script>
 <script src="js/index.js"></script>
 <script>
 M.AutoInit();
+(function() {
+  $('#controller-tabs').tabs({ swipeable: true });
+})()
 </script>
 <style>
+html, body { height:100%; margin:0; }
+body {
+  display: flex; 
+  flex-direction: column; 
+}
+footer {
+  margin-top: auto;
+  opacity: 0;
+  transition: all 0.5s;
+}
+footer:hover {
+  opacity: 1;
+}
+
 @media screen and (max-width: 600px) {
   .mobile-hide {
     visibility: hidden;
@@ -153,11 +213,16 @@ M.AutoInit();
   height: 0;
   opacity: 0;
 }
+.control-page {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+}
 
 #head-separator {
-  height:8px;
-  background: radial-gradient(ellipse at 25% 0%, rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 25%), radial-gradient(ellipse at 70% 0%, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 35%);
-  box-shadow: inset 0 7px 5px -10px #000000CC;
+  height: 10px;
+  background: radial-gradient(ellipse at 25% 0%, rgba(0,0,0,0.35) 0%,rgba(0,0,0,0) 25%), radial-gradient(ellipse at 70% 0%, rgba(0,0,0,0.15) 0%,rgba(0,0,0,0) 35%);
+  box-shadow: inset 0 7px 5px -10px #000000AA;
 }
 
 .drop-down-icon{
@@ -167,8 +232,21 @@ M.AutoInit();
 .drop-down-icon.up {
   transform: rotate(180deg)
 }
+
+.tabs .tab a {
+  color: #00000066;
+}
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: black;
+}
+.tabs .indicator {
+  background-color: #00000066;
+}
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+  background-color: #00000010;
+}
 </style>
-<style>
+<style id="rime-style">
 .rime-dong:hover {
   background: #0089A7;
   color: white;

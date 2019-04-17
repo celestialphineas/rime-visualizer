@@ -1,4 +1,4 @@
-var colors = {
+var colorDefinitions = {
   consonant: {
     '0': '#BDC0BA',
     'b': '#4F726C',   'p': '#268785',   'm': '#0F4C3A',   'f': '#00AA90',
@@ -8,4 +8,17 @@ var colors = {
     'z': '#9F353A',   'c': '#CB1B45',   's': '#DB4D6D',
     'zh': '#622954',  'ch': '#C1328E',  'sh': '#E03C8A',  'r': '#6D2E5B'
   },
+  hu: {
+    'kai': '#B54434', 'qi': '#F05E1C', 'he': '#4F726C', 'cuo': '#7BA23F'
+  },
+  coda: {
+    '0': '#BDC0BA', 'i': '#5DAC81', 'u': '#6A8372', 'n': '#A28C37', 'ng': '#6C6024', 'r': '#B28FCE'
+  },
+  tone: {
+    '0': '#BDC0BA', '1': '#005CAF', '2': '#00AA90', '3': '#CB1B45', '4': '#E83015'
+  }
 };
+
+(function() {
+
+})();

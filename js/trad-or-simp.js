@@ -43,8 +43,10 @@
 
   // Export 
   window.isSimplified = function(str) {
-    var counts = detect(str);
-    if(counts.simplifiedCharacters > counts.traditionalCharacters) return true;
+    var counts = detect(str) || {};
+    var simpCount = counts.simplifiedCharacters || 0;
+    var tradCount = counts.traditionalCharacters || 0;
+    if(simpCount > tradCount) return true;
     else return false;
   }
 })();
