@@ -76,6 +76,7 @@ if (!Array.prototype.flat) {
       if(rimeInfo[3]) classList.push(`vowel-${rimeInfo[3]}`);
       if(rimeInfo[4]) classList.push(`coda-${rimeInfo[4]}`);
       if(rimeInfo[5]) classList.push(`rime-${rimeInfo[5]}`);
+      if(rimeInfo[6]) classList.push(`tone-${rimeInfo[6]}`);
       var classString = classList.reduce(function(a, b) { return a + ' ' + b; })
       return `<span class="${classString}">${g1}</span>`;
     });
