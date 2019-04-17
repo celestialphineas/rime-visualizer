@@ -1,0 +1,22 @@
+{
+  "name": "rime-visualizer",
+  "version": "0.1.0",
+  "description": "Rime visualizer",
+  "main": "server.js",
+  "devDependencies": {
+    "express": "^4.16.4"
+  },
+  "scripts": {
+    "serve": "node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celestialphineas/rime-visualizer.git"
+  },
+  "author": "Celestial Phineas",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/celestialphineas/rime-visualizer/issues"
+  },
+  "homepage": "https://github.com/celestialphineas/rime-visualizer#readme"
+}
