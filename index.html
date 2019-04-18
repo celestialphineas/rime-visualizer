@@ -29,25 +29,55 @@
     </div>
     <div id="color-controller" class="">
       <ul id="controller-tabs" class="tabs">
-        <li class="tab"><a class="active" href="#sheng-page">声</a></li>
+        <li class="tab"><a class="active" href="#consonant-page">声</a></li>
         <li class="tab"><a href="#hu-page">呼</a></li>
-        <li class="tab"><a href="#yun-page">韻</a></li>
-        <li class="tab"><a href="#wei-page">尾</a></li>
-        <li class="tab"><a href="#diao-page">調</a></li>
+        <li class="tab"><a href="#rime-page">韻</a></li>
+        <li class="tab"><a href="#coda-page">尾</a></li>
+        <li class="tab"><a href="#tone-page">調</a></li>
       </ul>
-      <div id="sheng-page"><div class="control-page">
+      <div id="consonant-page" class="control-page"><div class="control-content">
+        <div class="row">
+          <div class="row col s1">
+            <a class="waves-effect waves-dark btn-floating btn-small white modal-trigger" style="margin-top:10px;">
+                <i class="material-icons drop-down-icon" style="color:#555">blur_off</i>
+            </a>
+          </div>
+          <div class="row col s11">
+            <a id="toggle-consonant-b"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>玻</span></a>
+            <a id="toggle-consonant-p"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>坡</span></a>
+            <a id="toggle-consonant-m"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>摸</span></a>
+            <a id="toggle-consonant-f"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>佛</span></a>
+            <a id="toggle-consonant-d"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>得</span></a>
+            <a id="toggle-consonant-t"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>特</span></a>
+            <a id="toggle-consonant-n"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>訥</span></a>
+            <a id="toggle-consonant-l"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>勒</span></a>
+            <a id="toggle-consonant-g"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>哥</span></a>
+            <a id="toggle-consonant-k"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>科</span></a>
+            <a id="toggle-consonant-h"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>喝</span></a>
+            <a id="toggle-consonant-j"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>基</span></a>
+            <a id="toggle-consonant-q"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>欺</span></a>
+            <a id="toggle-consonant-x"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>希</span></a>
+            <a id="toggle-consonant-zh" class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>知</span></a>
+            <a id="toggle-consonant-ch" class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>蚩</span></a>
+            <a id="toggle-consonant-sh" class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>詩</span></a>
+            <a id="toggle-consonant-r"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>日</span></a>
+            <a id="toggle-consonant-z"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>資</span></a>
+            <a id="toggle-consonant-c"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>雌</span></a>
+            <a id="toggle-consonant-s"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>思</span></a>
+            <a id="toggle-consonant-0"  class="toggle-btn toggle-consonant btn-flat waves-effect waves-dark col s2 m1"><span>Ø</span></a>
+          </div>
+        </div>
+      </div></div>
+      <div id="hu-page" class="control-page"><div class="control-content">
 
       </div></div>
-      <div id="hu-page"><div class="control-page">
+      <div id="rime-page" class="control-page"><div class="control-content">
 
       </div></div>
-      <div id="yun-page"><div class="control-page">
+      <div id="coda-page" class="control-page"><div class="control-content">
 
       </div></div>
-      <div id="wei-page"><div class="control-page">
-
-      </div></div>
-      <div id="diao-page"><div class="control-page">
+      <div id="tone-page" class="control-page"><div class="control-content">
 
       </div></div>
     </div>
@@ -116,12 +146,19 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/trad-or-simp.js"></script>
+<script src="js/style-manager.js"></script>
 <script src="js/index.js"></script>
 <script>
 M.AutoInit();
 (function() {
   $('#controller-tabs').tabs({ swipeable: true });
-})()
+  // Toggle button behavior
+  $('.toggle-btn').on('click', function() {
+    var object = $(this);
+    if(object.hasClass('on')) object.removeClass('on');
+    else object.addClass('on');
+  });
+})();
 </script>
 <style>
 html, body { height:100%; margin:0; }
@@ -213,7 +250,7 @@ footer:hover {
   height: 0;
   opacity: 0;
 }
-.control-page {
+.control-content {
   width: 100%;
   height: 200px;
   padding: 10px;
@@ -244,6 +281,15 @@ footer:hover {
 }
 .tabs .tab a:focus, .tabs .tab a:focus.active {
   background-color: #00000010;
+}
+
+.toggle-btn {
+  text-align: center;
+  margin: 4px 0px;
+}
+.toggle-btn:not(.on) {
+  transition: all 0.5s;
+  background-color: transparent;
 }
 </style>
 <style id="rime-style">
