@@ -84,8 +84,11 @@ var colorDefinitions = {
   }
   $('.toggle-btn').on('click', updateStyleCSS);
   $('.tab').on('click', updateStyleCSS);
-  setTimeout(() => {
-    const css = generateDynamicCSS();
-    $('#rime-style').text(css);
-  }, 3000);
+
+  $(document).ajaxStop(function() {
+    setTimeout(() => {
+      const css = generateDynamicCSS();
+      $('#rime-style').text(css);
+    }, 500);
+  });
 })();
