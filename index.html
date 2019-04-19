@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script>
-    // (function(d) {
-    //   var config = {
-    //     kitId: 'txy4lhi',
-    //     scriptTimeout: 3000,
-    //     async: true
-    //   },
-    //   h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    // })(document);
+    (function(d) {
+      var config = {
+        kitId: 'txy4lhi',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <title>韻色 demo</title>
@@ -27,18 +27,18 @@
         <span class="song-trad text-bold" lang="kr" style="font-size:20pt">詩</span>
       </a>
     </div>
-    <div id="color-controller" class="">
+    <div id="color-controller" class="hidden">
       <ul id="controller-tabs" class="tabs">
-        <li class="tab"><a class="active" href="#consonant-page">声</a></li>
-        <li class="tab"><a href="#hu-page">呼</a></li>
-        <li class="tab"><a href="#rime-page">韻</a></li>
-        <li class="tab"><a href="#coda-page">尾</a></li>
-        <li class="tab"><a href="#tone-page">調</a></li>
+        <li class="tab"><a onclick="window.currentCategory='consonant'" href="#consonant-page">声</a></li>
+        <li class="tab"><a onclick="window.currentCategory='hu'" href="#hu-page">呼</a></li>
+        <li class="tab"><a class="active" onclick="window.currentCategory='rime'" href="#rime-page">韻</a></li>
+        <li class="tab"><a onclick="window.currentCategory='coda'" href="#coda-page">尾</a></li>
+        <li class="tab"><a onclick="window.currentCategory='tone'" href="#tone-page">調</a></li>
       </ul>
       <div id="consonant-page" class="control-page"><div class="control-content">
         <div class="row">
           <div class="row col s1">
-            <a class="waves-effect waves-dark btn-floating btn-small white modal-trigger" style="margin-top:10px;">
+            <a class="blur-btn waves-effect waves-dark btn-floating btn-small white" style="margin-top:10px;">
                 <i class="material-icons drop-down-icon" style="color:#555">blur_off</i>
             </a>
           </div>
@@ -69,16 +69,81 @@
         </div>
       </div></div>
       <div id="hu-page" class="control-page"><div class="control-content">
-
+        <div class="row">
+          <div class="row col s1">
+            <a class="blur-btn waves-effect waves-dark btn-floating btn-small white" style="margin-top:10px;">
+                <i class="material-icons drop-down-icon" style="color:#555">blur_off</i>
+            </a>
+          </div>
+          <div class="row col s11">
+            <a id="toggle-hu-kai" class="toggle-btn toggle-hu btn-flat waves-effect waves-dark col s2 m1"><span>開</span></a>
+            <a id="toggle-hu-qi"  class="toggle-btn toggle-hu btn-flat waves-effect waves-dark col s2 m1"><span>齊</span></a>
+            <a id="toggle-hu-he"  class="toggle-btn toggle-hu btn-flat waves-effect waves-dark col s2 m1"><span>合</span></a>
+            <a id="toggle-hu-cuo" class="toggle-btn toggle-hu btn-flat waves-effect waves-dark col s2 m1"><span>撮</span></a>
+          </div>
+        </div>
       </div></div>
       <div id="rime-page" class="control-page"><div class="control-content">
-
+        <div class="row">
+          <div class="row col s1">
+            <a class="blur-btn waves-effect waves-dark btn-floating btn-small white" style="margin-top:10px;">
+                <i class="material-icons drop-down-icon" style="color:#555">blur_off</i>
+            </a>
+          </div>
+          <div class="row col s11">
+            <a id="toggle-rime-ma"   class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>麻</span></a>
+            <a id="toggle-rime-bo"   class="toggle-btn on toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>波</span></a>
+            <a id="toggle-rime-ge"   class="toggle-btn on toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>歌</span></a>
+            <a id="toggle-rime-jie"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>皆</span></a>
+            <a id="toggle-rime-zhi"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>支</span></a>
+            <a id="toggle-rime-er"   class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>兒</span></a>
+            <a id="toggle-rime-qi"   class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>齊</span></a>
+            <a id="toggle-rime-wei"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>微</span></a>
+            <a id="toggle-rime-kai"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>開</span></a>
+            <a id="toggle-rime-mu"   class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>模</span></a>
+            <a id="toggle-rime-yu"   class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>魚</span></a>
+            <a id="toggle-rime-hou"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>侯</span></a>
+            <a id="toggle-rime-hao"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>豪</span></a>
+            <a id="toggle-rime-han"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>寒</span></a>
+            <a id="toggle-rime-hen"  class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>痕</span></a>
+            <a id="toggle-rime-tang" class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>唐</span></a>
+            <a id="toggle-rime-geng" class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>庚</span></a>
+            <a id="toggle-rime-dong" class="toggle-btn toggle-rime btn-flat waves-effect waves-dark col s2 m1"><span>東</span></a>
+          </div>
+        </div>
       </div></div>
       <div id="coda-page" class="control-page"><div class="control-content">
-
+        <div class="row">
+          <div class="row col s1">
+            <a class="blur-btn waves-effect waves-dark btn-floating btn-small white" style="margin-top:10px;">
+                <i class="material-icons drop-down-icon" style="color:#555">blur_off</i>
+            </a>
+          </div>
+          <div class="row col s11">
+            <a id="toggle-coda-0"  class="toggle-btn toggle-coda btn-flat waves-effect waves-dark col s2 m1"><span>Ø</span></a>
+            <a id="toggle-coda-i"  class="toggle-btn toggle-coda btn-flat waves-effect waves-dark col s2 m1"><span>i</span></a>
+            <a id="toggle-coda-u"  class="toggle-btn toggle-coda btn-flat waves-effect waves-dark col s2 m1"><span>u</span></a>
+            <a id="toggle-coda-n"  class="toggle-btn toggle-coda btn-flat waves-effect waves-dark col s2 m1"><span>n</span></a>
+            <a id="toggle-coda-ng" class="toggle-btn toggle-coda btn-flat waves-effect waves-dark col s2 m1"><span>ŋ</span></a>
+            <a id="toggle-coda-r"  class="toggle-btn toggle-coda btn-flat waves-effect waves-dark col s2 m1"><span>r</span></a>
+          </div>
+        </div>
       </div></div>
       <div id="tone-page" class="control-page"><div class="control-content">
-
+        <div class="row">
+          <div class="row col s1">
+            <a class="blur-btn waves-effect waves-dark btn-floating btn-small white" style="margin-top:10px;">
+                <i class="material-icons drop-down-icon" style="color:#555">blur_off</i>
+            </a>
+          </div>
+          <div class="row col s11">
+            <a id="toggle-tone-1"  class="toggle-btn toggle-tone btn-flat waves-effect waves-dark col s2 m1"><span>陰平</span></a>
+            <a id="toggle-tone-2"  class="toggle-btn toggle-tone btn-flat waves-effect waves-dark col s2 m1"><span>陽平</span></a>
+            <a id="toggle-tone-3" class="toggle-btn toggle-tone btn-flat waves-effect waves-dark col s2 m1"><span>上</span></a>
+            <a id="toggle-tone-4" class="toggle-btn toggle-tone btn-flat waves-effect waves-dark col s2 m1"><span>去</span></a>
+            <a id="toggle-tone-0" class="toggle-btn toggle-tone btn-flat waves-effect waves-dark col s2 m1"><span>輕</span></a>
+          </div>
+        </div>
       </div></div>
     </div>
     <div style="height:0;text-align:center;">
@@ -127,6 +192,7 @@
         <div class="col l6 s12">
           <h5 class="white-text">韻色</h5>
           <p class="grey-text text-lighten-4">漢語音韻可視化demo，目前僅支持普通話</p>
+          <p class="grey-text text-lighten-4">漢字音數據來自<a class="grey-text" href="https://github.com/MaigoAkisame/MCPDict">“漢字古今中外讀音查詢”</a></p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">鏈接</h5>
@@ -158,13 +224,25 @@ M.AutoInit();
     if(object.hasClass('on')) object.removeClass('on');
     else object.addClass('on');
   });
+  window.blurStyle = false;
+  $('.blur-btn').on('click', function() {
+    var objects = $('.blur-btn i');
+    if(objects[0].innerHTML === 'blur_off') {
+      window.blurStyle = true;
+      objects.text('blur_on');
+    } else {
+      window.blurStyle = false;
+      objects.text('blur_off');
+    }
+  })
 })();
 </script>
 <style>
 html, body { height:100%; margin:0; }
 body {
   display: flex; 
-  flex-direction: column; 
+  flex-direction: column;
+  font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
 }
 footer {
   margin-top: auto;
@@ -240,11 +318,16 @@ footer:hover {
 
 #color-controller {
   width: 100%;
-  height: 250px;
+  height: 150px;
   border-radius: 20px;
   z-index: -10;
   transition: all 0.5s;
   opacity: 1;
+}
+@media screen and (max-width: 600px) {
+  #color-controller {
+    height: 250px;
+  }
 }
 #color-controller.hidden {
   height: 0;
@@ -284,6 +367,7 @@ footer:hover {
 }
 
 .toggle-btn {
+  font-size: 12pt;
   text-align: center;
   margin: 4px 0px;
 }
@@ -293,17 +377,5 @@ footer:hover {
 }
 </style>
 <style id="rime-style">
-.rime-dong:hover {
-  background: #0089A7;
-  color: white;
-}
-.rime-geng:hover {
-  background: #33A6B8;
-  color: white;
-}
-.rime-tang:hover {
-  background: #5DAC81;
-  color: white;
-}
 </style>
 </html>

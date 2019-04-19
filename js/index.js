@@ -3,7 +3,7 @@ if (!Array.prototype.flat) {
   Object.defineProperty(Array.prototype, 'flat', {
     configurable: true,
     value: function flat() {
-      var depth = isNaN(arguments[0]) ? 1 : Number(arguments[0]);
+      const depth = isNaN(arguments[0]) ? 1 : Number(arguments[0]);
 
       return depth ? Array.prototype.reduce.call(this, function (acc, cur) {
         if (Array.isArray(cur)) {
@@ -37,25 +37,25 @@ if (!Array.prototype.flat) {
   function lineBreak(input) {
     return input.split('\n')
       // .map(function(str) { return str.split(/(?<=[。！？；：])/g); }).flat()
-      .map(function(str) {
-        return str.split('').reverse().join('')
-          .split(/(?=[。！？；：])/g).map(function(s) { return s.split('').reverse().join(''); })
-          .reverse();
-      }).flat()
+      .map((str) =>
+        str.split('').reverse().join('')
+          .split(/(?=[。！？；：])/g).map(s => s.split('').reverse().join(''))
+          .reverse()
+      ).flat()
       .map(function breakLong(str) {
         // Break up long line
         if(str.length >= 20) {
-          // var clusters = str.split(/(?<=[，、　])/g);
-          var clusters = str.split('').reverse().join('')
-            .split(/(?=[，、　])/g).map(function(s) { return s.split('').reverse().join(''); })
+          // const clusters = str.split(/(?<=[，、　])/g);
+          const clusters = str.split('').reverse().join('')
+            .split(/(?=[，、　])/g).map(s => s.split('').reverse().join(''))
             .reverse();
           if(clusters.length === 1) return str;
-          var mid = Math.ceil(clusters.length/2);
+          const mid = Math.ceil(clusters.length/2);
           return [
             clusters.slice(0, mid)
-              .concat("").reduce(function(a, b) { return a + b; }),
+              .concat("").reduce((a, b) => a + b),
             clusters.slice(mid, clusters.length)
-              .concat("").reduce(function(a, b) { return a + b; })
+              .concat("").reduce((a, b) => a + b)
           ].flat().map(breakLong).flat();
         }
         return str;
@@ -66,23 +66,23 @@ if (!Array.prototype.flat) {
    * @param {string} input String to convert
    */
   function hanzi2HTML(input) {
-    var regex = /([\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\u{20000}-\u{2CEAF}])/gu;
+    const regex = /([\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\u{20000}-\u{2CEAF}])/gu;
 
-    return input.replace(regex, function(g1) {
-      var classList = ['hanzi-box'];
-      var rimeInfo = rimesData[g1] || [ ];
+    return input.replace(regex, (g1) => {
+      const classList = ['hanzi-box'];
+      const rimeInfo = rimesData[g1] || [ ];
       if(rimeInfo[1]) classList.push(`consonant-${rimeInfo[1]}`);
       if(rimeInfo[2]) classList.push(`hu-${rimeInfo[2]}`);
       if(rimeInfo[3]) classList.push(`vowel-${rimeInfo[3]}`);
       if(rimeInfo[4]) classList.push(`coda-${rimeInfo[4]}`);
       if(rimeInfo[5]) classList.push(`rime-${rimeInfo[5]}`);
       if(rimeInfo[6]) classList.push(`tone-${rimeInfo[6]}`);
-      var classString = classList.reduce(function(a, b) { return a + ' ' + b; })
+      const classString = classList.reduce((a, b) => a + ' ' + b);
       return `<span class="${classString}">${g1}</span>`;
     });
   }
 
-  window.addEventListener('load', function() {
+  window.addEventListener('load', () => {
     $('#poem-title').text(poemTitle);
     $('#title-input').val(poemTitle);
     $('#text-input').val(poemText).characterCounter();
@@ -99,10 +99,10 @@ if (!Array.prototype.flat) {
       $('.song').attr('lang', 'kr');
     }
     $('#poem-container').html(
-      lineBreak(poemText).map(hanzi2HTML).reduce(function(a, b) { return a + '</br>' + b; })
+      lineBreak(poemText).map(hanzi2HTML).reduce((a, b) => a + '</br>' + b)
     );
   }
-  window.updatePoem = function() {
+  window.updatePoem = () => {
     window.poemTitle = $('#title-input').val();
     window.poemText = $('#text-input').val();
     updatePoemTitle();
@@ -113,10 +113,10 @@ if (!Array.prototype.flat) {
     updatePoemText();
   }
 
-  $.getJSON('data/rimes.json', function(rimesData) {
+  $.getJSON('data/rimes.json', (rimesData) => {
     // Expose rimesData
     window.rimesData = rimesData;
   })
   .done(initPoem)
-  .fail(function() { console.log('Rimes not found!'); });
+  .fail(() => console.log('Rimes not found!'));
 })();
